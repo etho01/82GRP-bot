@@ -7,7 +7,7 @@ import { Command } from './types';
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection<string, Command>();
 
-// Charge dynamiquement toutes les commandes compilées dans dist/commands.
+// Charge dynamiquement toutes les commandes compilees dans dist/commands.
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith('.js'));
 

@@ -1,4 +1,4 @@
-import {
+import type {
   ChatInputCommandInteraction,
   Collection,
   SlashCommandBuilder,
@@ -7,14 +7,10 @@ import {
 } from 'discord.js';
 
 export interface Command {
-  data:
-    | SlashCommandBuilder
-    | SlashCommandOptionsOnlyBuilder
-    | SlashCommandSubcommandsOnlyBuilder;
+  data: SlashCommandBuilder | SlashCommandOptionsOnlyBuilder | SlashCommandSubcommandsOnlyBuilder;
   execute: (interaction: ChatInputCommandInteraction) => Promise<void>;
 }
 
-// Augmente le client discord.js pour y stocker la collection des commandes.
 declare module 'discord.js' {
   interface Client {
     commands: Collection<string, Command>;
