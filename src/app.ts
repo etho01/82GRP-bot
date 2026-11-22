@@ -1,6 +1,6 @@
 import 'dotenv/config';
-import fs from 'node:fs';
 import path from 'node:path';
+import { getCommandFilesData } from './utils/utils';
 import { Client, Collection, Events, GatewayIntentBits } from 'discord.js';
 import { Command } from './types';
 
@@ -8,8 +8,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection<string, Command>();
 
 // Charge dynamiquement toutes les commandes compilees dans dist/commands.
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith('.js'));
+const {commandsPath, commandFiles} = getCommandFilesData();
 
 for (const file of commandFiles) {
   const filePath = path.join(commandsPath, file);

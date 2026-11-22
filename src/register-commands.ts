@@ -1,12 +1,11 @@
 import 'dotenv/config';
-import fs from 'node:fs';
 import path from 'node:path';
 import { REST, Routes } from 'discord.js';
 import { Command } from './types';
+import { getCommandFilesData } from './utils/utils';
 
 // Charge dynamiquement toutes les commandes compilees dans dist/commands.
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith('.js'));
+const {commandsPath, commandFiles} = getCommandFilesData();
 
 const commandsData = commandFiles.map((file) => {
   const filePath = path.join(commandsPath, file);
